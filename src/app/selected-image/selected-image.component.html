@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div style="text-align: center;background-color:lavender;padding:10px;">
+                <h5>Add Additional Observation Points</h5>
+            </div>
+            <div id="imageWrapper" #imageWrapper (click)="clicked($event)">
+                <div class="point" [style.top]="point.y + 'px'" [style.left]="point.x + 'px'"
+                    *ngFor="let point of points" [class.point-saved] = "point.saved" (click)="showPointDetail($event, point)"></div>
+            </div>
+            <div style="background-color:lightsalmon;padding:10px;text-align: center;">
+                <p>Click in the image to add additional Obs point</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <app-observation-detail [activePoint]="activePoint" (onNotify)="onChildNotify($event)">
+            </app-observation-detail>
+        </div>
+    </div>
+</div>

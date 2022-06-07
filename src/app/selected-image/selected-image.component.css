@@ -1,0 +1,18 @@
+#imageWrapper {
+    background-image: url("/assets/image1.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 400px;
+}
+
+.point {
+    position: absolute;
+    background-color: red;
+    width: 5px;
+    height: 5px;
+}
+
+.point-saved {
+    background-color: green;
+}

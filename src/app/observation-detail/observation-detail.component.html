@@ -1,0 +1,37 @@
+<div *ngIf="activePoint.visible">
+    <form>
+        <div class="form-group">
+            <label for="new-observation-name">Name*</label>
+            <input [disabled]="!activePoint.editable" name="name" class="form-control" id="new-observation-name" [(ngModel)]="activePoint.name" maxlength="20">
+            <small *ngIf="activePoint.name.trim() == ''" class="warning">Name is a required field</small>
+        </div>
+        <div class="form-group">
+            <label for="new-observation-name">Crack Length*</label>
+            <input [disabled]="!activePoint.editable" name="crackLength" class="form-control" [(ngModel)] = "activePoint.crackLength" step="0.1" type="number">
+            <small *ngIf="!(activePoint.crackLength > 0)" class="warning">Crack Length should be greater than 0</small>
+        </div>
+        <div class="form-group">
+            <label for="new-observation-name">X</label>
+            <input [disabled]="!activePoint.editable" class="form-control" [value]="activePoint.x">
+        </div>
+        <div class="form-group">
+            <label for="new-observation-name">Y</label>
+            <input [disabled]="!activePoint.editable" class="form-control" [value]="activePoint.y">
+        </div>
+        <div class="form-group">
+            <label for="new-observation-name">Images*</label>
+            <input *ngIf="activePoint.editable" id="inputFile" class="form-control" type="file" (change)="inputFileChanged($event.target)">
+            <small *ngIf="activePoint.editable && activePoint.images.length > 0">{{activePoint.images.length}} image(s) selected</small>
+            <!--<div *ngFor="let image of images">{{image}}</div> -->
+            <small *ngIf="!(activePoint.images.length > 0)" class="warning">There should be at least one image</small>
+            <div *ngIf="!activePoint.editable">
+                <img *ngFor="let img of activePoint.images" [src]="img" width="100px" style="margin-right: 10px">
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:10px">
+            <button *ngIf="!activePoint.editable" class="btn btn-secondary" type="button" (click)="activePoint.visible = false">Close</button>
+            <button *ngIf="activePoint.editable" class="btn btn-secondary m-1" type="button" (click)="cancel()" style="margin-left: 10px">Cancel</button>
+            <button *ngIf="activePoint.editable" class="btn btn-primary" (click)="submit()">Done</button>
+        </div>
+    </form>
+</div>
